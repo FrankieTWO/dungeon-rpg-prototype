@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://h77pcdre2s1w"]
+
+[node name="CanvasModulate" type="CanvasModulate"]
+texture_filter = 1
+color = Color(0.220078, 0.235735, 0.109311, 1)

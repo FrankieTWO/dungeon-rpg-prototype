@@ -1,0 +1,65 @@
+[gd_scene load_steps=9 format=3 uid="uid://d1i11f6v4ha3r"]
+
+[ext_resource type="Texture2D" uid="uid://dsjffh3cqopav" path="res://assets/fantasy_ [version 2.0]/forest_/forest_ [resources].png" id="1_sia88"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wekyl"]
+atlas = ExtResource("1_sia88")
+region = Rect2(112, 125, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ey5u8"]
+atlas = ExtResource("1_sia88")
+region = Rect2(128, 125, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0h86w"]
+atlas = ExtResource("1_sia88")
+region = Rect2(144, 125, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hkl1u"]
+atlas = ExtResource("1_sia88")
+region = Rect2(160, 125, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nhl5k"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wekyl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ey5u8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0h86w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hkl1u")
+}],
+"loop": true,
+"name": &"fire",
+"speed": 5.0
+}]
+
+[sub_resource type="Gradient" id="Gradient_4krqa"]
+offsets = PackedFloat32Array(0, 0.642857, 0.974026)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_vu235"]
+gradient = SubResource("Gradient_4krqa")
+fill = 1
+fill_from = Vector2(0.490826, 0.513761)
+
+[node name="CampFire" type="Node2D"]
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_nhl5k")
+animation = &"fire"
+frame_progress = 0.830797
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(-6.85453e-07, -4.76837e-07)
+scale = Vector2(0.904605, 0.986842)
+color = Color(0.992157, 0.67451, 0.443137, 1)
+energy = 0.7
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_vu235")
+texture_scale = 0.38

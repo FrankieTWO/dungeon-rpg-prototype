@@ -1,0 +1,61 @@
+[gd_scene load_steps=9 format=3 uid="uid://c8uo0256rj0aa"]
+
+[ext_resource type="Script" path="res://scenes/dungeon.gd" id="1_ecfsn"]
+[ext_resource type="Texture2D" uid="uid://dims4l1riuh1k" path="res://assets/0x72_DungeonTilesetII_v1.7/atlas_floor-16x16.png" id="2_vtklo"]
+[ext_resource type="Texture2D" uid="uid://bg5wknoi2nyma" path="res://assets/0x72_DungeonTilesetII_v1.7/0x72_DungeonTilesetII_v1.7.png" id="4_snejr"]
+[ext_resource type="PackedScene" uid="uid://cj313nbgfhqvy" path="res://scenes/player.tscn" id="4_warbq"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_c80wt"]
+resource_name = "floor_id"
+texture = ExtResource("2_vtklo")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+6:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+3:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_h4jee"]
+sources/1 = SubResource("TileSetAtlasSource_c80wt")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0wclj"]
+resource_name = "wall_id"
+texture = ExtResource("4_snejr")
+3:9/0 = 0
+3:8/0 = 0
+2:8/0 = 0
+2:9/0 = 0
+2:10/0 = 0
+2:11/0 = 0
+3:11/0 = 0
+3:10/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_8r101"]
+sources/0 = SubResource("TileSetAtlasSource_0wclj")
+
+[node name="Dungeon" type="Node2D"]
+script = ExtResource("1_ecfsn")
+
+[node name="floor_layer" type="TileMapLayer" parent="."]
+tile_set = SubResource("TileSet_h4jee")
+
+[node name="wall_layer" type="TileMapLayer" parent="."]
+tile_set = SubResource("TileSet_8r101")
+
+[node name="Player" parent="." instance=ExtResource("4_warbq")]
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position = Vector2(-2, 4)

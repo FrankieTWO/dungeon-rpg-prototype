@@ -1,0 +1,109 @@
+[gd_scene load_steps=16 format=3 uid="uid://cj313nbgfhqvy"]
+
+[ext_resource type="Texture2D" uid="uid://bg5wknoi2nyma" path="res://assets/0x72_DungeonTilesetII_v1.7/0x72_DungeonTilesetII_v1.7.png" id="1_h722b"]
+[ext_resource type="Script" path="res://scenes/player.gd" id="1_kxuho"]
+[ext_resource type="PackedScene" uid="uid://vup4cagjoq7x" path="res://scenes/weapon.tscn" id="3_0o0a5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qlh3k"]
+atlas = ExtResource("1_h722b")
+region = Rect2(128, 32, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s1vlp"]
+atlas = ExtResource("1_h722b")
+region = Rect2(144, 32, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vmp60"]
+atlas = ExtResource("1_h722b")
+region = Rect2(160, 32, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_go5qn"]
+atlas = ExtResource("1_h722b")
+region = Rect2(176, 32, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4orqx"]
+atlas = ExtResource("1_h722b")
+region = Rect2(128, 32, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eseg4"]
+atlas = ExtResource("1_h722b")
+region = Rect2(144, 32, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oj06s"]
+atlas = ExtResource("1_h722b")
+region = Rect2(192, 32, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_41qmq"]
+atlas = ExtResource("1_h722b")
+region = Rect2(176, 32, 16, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_b0n6m"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qlh3k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s1vlp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vmp60")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_go5qn")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4orqx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eseg4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oj06s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_41qmq")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a87im"]
+size = Vector2(10, 4)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_a83qf"]
+polygon = PackedVector2Array(-6, 16, 6, 16, 6, 9, 7, 3, 9, 0, 5, -3, -4, -3, -7, 0, -8, 7, -8, 10, -7, 11)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_t8h5f"]
+radius = 24.0
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_kxuho")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_b0n6m")
+animation = &"idle"
+frame_progress = 0.451866
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 14)
+shape = SubResource("RectangleShape2D_a87im")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_a83qf")
+
+[node name="Weapon" parent="." instance=ExtResource("3_0o0a5")]
+position = Vector2(0, 13)
+scale = Vector2(0.7, 0.7)
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_t8h5f")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
